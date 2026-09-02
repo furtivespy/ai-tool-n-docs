@@ -1,0 +1,22 @@
+# Third-party notices
+
+This repository is published under the MIT License (see `LICENSE`) for
+material authored for this project.
+
+Many files under `skills/` are vendored from upstream skill packs and plugins.
+**Those skills retain their original licenses and copyright.** Vendoring them
+here does not re-license them as MIT.
+
+## Provenance
+
+Install sources and pins (when available) are recorded in `.skill-lock.json`.
+
+Known upstream sources include (non-exhaustive):
+
+- [mattpocock/skills](https://github.com/mattpocock/skills)
+- [vercel-labs/skills](https://github.com/vercel-labs/skills)
+- [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)
+- [nwp/suno-song-creator-plugin](https://github.com/nwp/suno-song-creator-plugin)
+
+See each skill’s own files and the lockfile for the authoritative source and
+license terms for that skill.
