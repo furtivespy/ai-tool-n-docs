@@ -10,7 +10,8 @@ stack shareable in public later.
 | Path | Purpose |
 |------|---------|
 | `skills/` | Vendored agent skills (flat: one folder per skill) |
-| `docs/` | Workflow and topic docs (filled over time) |
+| `docs/` | Workflow and topic docs |
+| `docs/automations/` | Canonical prompts for Cursor automations (config stays in agent settings) |
 | `tools/` | Tool inventory notes (CLIs, MCP, extensions) |
 | `scripts/` | Automation (none in v1; manual sync for now) |
 | `stack/` | Public-facing “what I use” notes |
