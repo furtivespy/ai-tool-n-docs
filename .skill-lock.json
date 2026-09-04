@@ -46,7 +46,9 @@
       "skillFolderHash": "d8e341cee7980127dddda05159bedf25dc853615",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-09-01T03:59:01.316Z",
-      "updatedAt": "2026-09-01T03:59:01.316Z"
+      "updatedAt": "2026-09-01T03:59:01.316Z",
+      "forkedLocally": true,
+      "forkNote": "Local fork of mattpocock/skills code-review; adds Adversarial axis. Do not overwrite from upstream without merging."
     },
     "codebase-design": {
       "source": "mattpocock/skills",
