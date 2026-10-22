@@ -1,51 +1,30 @@
 # Release Notes Template
 
-Copy this template and fill it in for each new release.
+Length, section caps, and the done-when bar live in [SKILL.md](SKILL.md). Copy this skeleton; do not pad it.
 
 ```markdown
-## [Catchy Title with Emoji] 🎲
+## [Catchy Title] 🎲
 
-**[One-line benefit statement]**
+**[One-line benefit]**
 
-[2-3 sentences explaining the problem and solution with relatable scenarios]
+[Optional: one short sentence]
 
 ### How to use:
 
-* `/command example` - Brief description
-* `/command example` - Brief description
-* `/command example` - Brief description
-
-[If multiple command groups:]
-**Group Name:**
-* `/command example` - Brief description
+* `/command example` - Brief
+* `/command example` - Brief
 
 ### What's cool:
 
-* **Feature name**: Brief explanation with use case
-* **Feature name**: Brief explanation with use case
-* **Feature name**: Brief explanation with use case
+* **Feature**: One clause
+* **Feature**: One clause
 
-[Optional example:]
-**Example:** `/command example`  
-Result: "What happens when you run it"
+**Example:** `/command example` → result
 
 ### Technical notes:
 
-* Brief technical detail (what changed)
-* Brief technical detail
-* Brief technical detail
+* What changed
+* What changed
 
-Perfect for [use cases]! 🎲✨
+Perfect for [use case]! 🎲✨
 ```
-
-## Quick Checklist
-
-- [ ] Headline is catchy with emoji
-- [ ] Opening explains problem → solution
-- [ ] 3-5 command examples shown
-- [ ] 4-7 cool features listed
-- [ ] 1 example/scenario included
-- [ ] 3-5 technical notes (brief)
-- [ ] Total length: 30-50 lines
-- [ ] Tone is fun and conversational
-- [ ] Real-world use cases mentioned

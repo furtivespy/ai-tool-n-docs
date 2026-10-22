@@ -1,98 +1,98 @@
 ---
 name: write-release-notes
-description: Write engaging Discord-friendly release notes with fun conversational tone. Use when creating release notes, changelogs, release announcements, or when documenting new features for users. Follows Discord-optimized format (30-50 lines) with catchy headlines, command examples, and user-focused benefits.
+description: Write tight Discord-friendly release notes. Use when creating release notes, changelogs, release announcements, or documenting new features for users. Short skim, catchy headline, real commands, user benefits.
 ---
 
 # Writing Release Notes
 
+Write **tight**. Discord skim, not a blog post. Draft, then cut until every line earns its place.
+
 ## Quick Start
 
-When writing release notes:
-
-1. **Headline**: Catchy title with emoji (e.g., "Never Forget Your Turn Again! ⏰")
-2. **Opening**: One-line benefit + 2-3 sentences explaining problem → solution
-3. **Commands**: 3-5 actual command examples with syntax
-4. **Features**: 4-7 user benefits (not implementation details)
-5. **Example**: Show feature in action
-6. **Technical**: 3-5 brief notes on what changed
+1. **Headline**: Catchy title + one emoji
+2. **Opening**: Bold one-liner. At most one extra sentence.
+3. **Commands**: 2–4 real examples, syntax only
+4. **Features**: 3–4 user benefits, one clause each
+5. **Example**: One command + one result line
+6. **Technical**: 2–3 short bullets
 7. **Closing**: One sentence + emoji
 
-**Target length**: 30-50 lines for Discord sharing
+**Target: 15–25 lines. Hard cap: 30.** If you hit 30, cut — never add a section to “fill it out.”
+
+## How to deliver
+
+Always send **both**, in this order:
+
+1. **Formatted** — the notes as normal markdown in the reply so they can read them
+2. **Copy-paste** — the exact same notes in one fenced `markdown` code block
+
+The code block is the paste payload for Discord or GitHub. No extra commentary inside it. Do not skip it.
 
 ## Core Principles
 
-- **Tone**: Fun, conversational, enthusiastic (not formal)
+- **Tight**: short clauses, no scene-setting, no restating a bullet in prose
+- **Tone**: Fun, conversational (not formal)
 - **Focus**: User benefits, not implementation
-- **Length**: 30-40 lines target, 50 max
-- **Emojis**: 1-2 in headline/closing only
-- **Commands**: Show real syntax with examples
+- **Emojis**: 1–2 in headline/closing only
+- **Commands**: Real syntax
 
 ## Structure Template
 
 ```markdown
-## [Catchy Title with Emoji] 🎲
+## [Catchy Title] 🎲
 
-**[One-line benefit statement]**
+**[One-line benefit]**
 
-[2-3 sentences: problem → solution with relatable scenarios]
+[Optional: one short sentence]
 
 ### How to use:
 
-* `/command example` - Brief description
-* `/command example` - Brief description
+* `/command example` - Brief
+* `/command example` - Brief
 
 ### What's cool:
 
-* **Feature name**: Brief explanation with use case
-* **Feature name**: Brief explanation with use case
+* **Feature**: One clause
+* **Feature**: One clause
 
-**Example:** `/command example`  
-Result: "What happens"
+**Example:** `/command example` → result
 
 ### Technical notes:
 
-* Brief technical detail (what changed)
-* Brief technical detail
+* What changed
+* What changed
 
-Perfect for [use cases]! 🎲✨
+Perfect for [use case]! 🎲✨
 ```
 
 ## Writing Guidelines
 
 ### Headlines
 - ✅ "Never Forget Your Turn Again!"
-- ✅ "Cards Everywhere: Game Board & Custom Piles!"
 - ❌ "Added Reminder Functionality"
 
 ### Opening
-- ✅ Start with relatable scenarios: "Ever needed a Market Row for deck builders?"
-- ✅ Use questions: "Forget to check back on your game?"
-- ❌ "This release introduces..."
+- ✅ One benefit line. Optional: one problem→solution sentence.
+- ❌ A paragraph of vibe, three scenarios, then the feature
 
 ### Commands
-- ✅ Real syntax: `/reminder when:"in 10 minutes" message:"Check game"`
-- ✅ Include parameters: `name:Market`, `count:5`
-- ❌ Generic descriptions without commands
+- ✅ `/reminder when:"in 10 minutes" message:"Check game"`
+- ❌ Every flag, every game name, button-by-button narration
 
 ### Features
-- ✅ "**Autocomplete**: Type and see all available dice—no memorizing names"
-- ❌ "Autocomplete functionality has been implemented"
+- ✅ "**Autocomplete**: Type and see available dice"
+- ❌ A second sentence explaining the first
 
-## Quality Checklist
+## Done when
 
-Before finalizing:
-- [ ] Headline catchy with emoji
-- [ ] Opening explains problem → solution
-- [ ] 3-5 command examples (actual syntax)
-- [ ] 4-7 cool features (user benefits)
-- [ ] 1 example/scenario included
-- [ ] 3-5 technical notes (brief)
-- [ ] Total length: 30-50 lines
-- [ ] Tone is conversational and fun
-- [ ] Real-world use cases mentioned
+- [ ] Under 30 lines (count them)
+- [ ] Opening is 1–2 sentences total
+- [ ] No bullet has a follow-up sentence
+- [ ] You would paste it into Discord as-is
+- [ ] Reply includes the formatted notes **and** a fenced `markdown` copy-paste block with the same text
 
 ## Additional Resources
 
-- For detailed writing guide and examples, see [reference.md](reference.md)
-- For copy-paste template, see [template.md](template.md)
-- For real examples from past releases, see [examples.md](examples.md)
+- Tone, patterns, anti-patterns: [reference.md](reference.md)
+- Copy-paste skeleton: [template.md](template.md)
+- Tight finished examples: [examples.md](examples.md)

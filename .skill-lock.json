@@ -387,6 +387,64 @@
       "skillFolderHash": "ac92229646fccf7315ae139c37b479b3790617f2",
       "installedAt": "2026-09-01T03:59:01.907Z",
       "updatedAt": "2026-09-01T03:59:01.907Z"
+    },
+    "i-have-adhd": {
+      "source": "ayghri/i-have-adhd",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ayghri/i-have-adhd.git",
+      "skillPath": "skills/i-have-adhd/SKILL.md",
+      "skillFolderHash": "72dc6e3e9d0f8d906579a235edb7b2a402d7b8e1",
+      "installedAt": "2026-09-15T15:14:49.806Z",
+      "updatedAt": "2026-09-15T15:14:49.806Z",
+      "license": "MIT",
+      "licenseFile": "skills/i-have-adhd/LICENSE",
+      "skillsSh": "https://skills.sh/ayghri/i-have-adhd",
+      "forkNote": "LICENSE copied from upstream repo root for redistribution; not part of skillFolderHash."
+    },
+    "suno-songwriting": {
+      "source": "nunaught/suno-songwriting-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/nunaught/suno-songwriting-skill.git",
+      "skillPath": "suno-songwriting/SKILL.md",
+      "skillFolderHash": "ba14062d8e8bb9e50433832a7719d467548b0910",
+      "installedAt": "2026-09-24T14:23:56.514Z",
+      "updatedAt": "2026-09-24T14:23:56.514Z",
+      "license": "Apache-2.0",
+      "licenseFile": "skills/suno-songwriting/LICENSE",
+      "skillsSh": "https://skills.sh/nunaught/suno-songwriting-skill",
+      "forkNote": "LICENSE copied from upstream repo root for redistribution; not part of skillFolderHash."
+    },
+    "otel-instrumentation": {
+      "source": "honeycombio/agent-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/honeycombio/agent-skill.git",
+      "skillPath": "honeycomb/skills/otel-instrumentation/SKILL.md",
+      "skillsSh": "https://skills.sh/honeycombio/agent-skill/otel-instrumentation",
+      "recordedAt": "2026-10-22T02:59:05.000Z",
+      "forkNote": "Already vendored under skills/otel-instrumentation. Hash omitted because this copy was not installed through the lockfile."
+    },
+    "brainstorming": {
+      "source": "obra/superpowers-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/obra/superpowers-skills.git",
+      "skillsSh": "https://skills.sh/obra/superpowers-skills/brainstorming-ideas-into-designs",
+      "recordedAt": "2026-10-22T02:59:05.000Z",
+      "forkNote": "Wording matches the older 'Brainstorming Ideas Into Designs' listing. Current obra/superpowers/brainstorming text has diverged."
+    },
+    "beginbot-suno": {
+      "source": "local",
+      "sourceType": "local",
+      "skillPath": "skills/beginbot-suno/SKILL.md",
+      "recordedAt": "2026-10-22T02:59:05.000Z",
+      "forkNote": "Present in ~/.cursor/skills since 2026-02-13. No matching listing found on skills.sh."
+    },
+    "write-release-notes": {
+      "source": "local",
+      "sourceType": "local",
+      "skillPath": "skills/write-release-notes/SKILL.md",
+      "forkedLocally": true,
+      "recordedAt": "2026-10-22T02:59:05.000Z",
+      "forkNote": "Pulled from ~/.cursor/skills (Sep 2026 Discord-tight rewrite). Original Feb copy used a 30-50 line template. No matching skills.sh listing identified."
     }
   },
   "dismissed": {
