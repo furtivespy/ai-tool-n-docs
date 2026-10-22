@@ -17,6 +17,18 @@ Known upstream sources include (non-exhaustive):
 - [vercel-labs/skills](https://github.com/vercel-labs/skills)
 - [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)
 - [nwp/suno-song-creator-plugin](https://github.com/nwp/suno-song-creator-plugin)
+- [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) — MIT;
+  listed at [skills.sh/ayghri/i-have-adhd](https://skills.sh/ayghri/i-have-adhd)
+- [nunaught/suno-songwriting-skill](https://github.com/nunaught/suno-songwriting-skill)
+  — Apache-2.0; listed at
+  [skills.sh/nunaught/suno-songwriting-skill](https://skills.sh/nunaught/suno-songwriting-skill);
+  full license text is in `skills/suno-songwriting/LICENSE`
+- [honeycombio/agent-skill](https://github.com/honeycombio/agent-skill) —
+  `otel-instrumentation`
+
+`beginbot-suno` and the live Discord-tight `write-release-notes` copy had no
+matching skills.sh listing when recorded. Treat those as local copies until
+an upstream is identified.
 
 See each skill’s own files and the lockfile for the authoritative source and
 license terms for that skill.

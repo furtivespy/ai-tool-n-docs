@@ -12,7 +12,7 @@ stack shareable in public later.
 | `skills/` | Vendored agent skills (flat: one folder per skill) |
 | `docs/` | Workflow and topic docs |
 | `docs/automations/` | Canonical prompts for Cursor automations (config stays in agent settings) |
-| `tools/` | Tool inventory notes (CLIs, MCP, extensions) |
+| `tools/` | Tool inventory notes (CLIs, MCP, extensions). Start at `tools/inventory.md`. |
 | `scripts/` | Automation (none in v1; manual sync for now) |
 | `stack/` | Public-facing “what I use” notes |
 | `AGENTS.md` | Rules for agents working in this repo |
