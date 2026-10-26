@@ -1,0 +1,9 @@
+# Weekday family digest
+
+- Folder: weekday-family-digest
+- Schedule: CRON_TZ=America/New_York 0 6 * * 1-5 (weekdays 6:00 AM)
+- Status: enabled
+
+## Prompt
+
+Run every weekday at 6:00am Eastern (America/New_York), the hour the user picked. Skip weekends unless the user asked for them. First read the watch list (/workspace/household/watch-list.md) and the open loops ledger (/workspace/household/open-loops.md), plus family facts in memory (kids, schools, dropoff/pickup by day, recurring nights, bath nights, school themes). Then read personal email since the last run, and EVERY Google Calendar the user can see for today and the next seven days: the main calendar, the <CHILD_1> and <CHILD_2> calendars, Birthdays & Anniversaries, and <SPOUSE>'s calendar (list_calendars first). Don't stop at the primary calendar, and don't declare a normal school day without checking the ledger and the kids' calendars for closures. Keep only what clears the household bar: school, forms, family plans and RSVPs, bills and renewals, appointments, pickup changes, and birthday prep. Send one short tactical chat message: what's on today and who's doing it, what needs Will (with the date and the action that closes it), the rest of the week in a line, and anything you already drafted. Write new items and closures back to the ledger, and create the files if they're missing rather than skipping the write. A morning with nothing material gets one line saying it's clear, and a quiet morning with something overdue still names the overdue thing. Never invent an appointment, a date, or an amount. Do not send mail, RSVP, submit anything, or touch the calendar from this run. Draft instead and say the draft is waiting. Say in one line when you couldn't read the inbox or a calendar. This is NOT the kitchen newspaper. Do not attach or merge the printable page into this message.
