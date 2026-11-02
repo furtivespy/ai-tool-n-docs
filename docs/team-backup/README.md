@@ -2,7 +2,7 @@
 
 A sanitized copy of Will's Grok Bot agent team: each bot's profile, the user-created skills, and every routine prompt that could be collected. If a bad edit or a box reset happens, restore from here instead of rebuilding.
 
-Snapshot taken: 2026-10-25 21:35 ET
+Snapshot taken: 2026-11-01 21:45 ET
 
 Secrets (webhook URLs, tokens, keys) and personal data (family names, schools, home ZIP/neighborhood/address, store ids, Discord/agent/Linear ids) were replaced with placeholders like `<CHILD_1>`, `<HOME_ZIP>`, `<AGENT_ID:name>`, `<UUID_n>`. Fill them back in from memory or the live tools when restoring.
 
@@ -27,8 +27,9 @@ Secrets (webhook URLs, tokens, keys) and personal data (family names, schools, h
 ## Stale or missing pieces
 
 - QA Department has no routine staging folder, so its routines (if any) aren't captured.
-- Chief of Staff's Mon/Thu tech briefing and Wednesday trivia picture clue prompts aren't verbatim: a routine run can only read its own routine. Their files hold a summary and the schedule only.
-- Dungeon Assistant and Grimoire report no routines.
+- Dungeon Assistant and Grimoire report no routines, but their staging folders haven't been refreshed since 2026-10-23 (more than 8 days old), so treat "none" as possibly stale.
+- God of Commerce's staging folder wasn't refreshed this week (newest file 2026-10-25); its routine files are carried over as of that date.
+- Chief of Staff's Mon/Thu tech briefing and Wednesday trivia picture clue prompts come from its staging copies dated 2026-10-25 (verbatim), since a routine run can only read its own routine.
 
 ## How to restore
 

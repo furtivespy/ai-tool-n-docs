@@ -16,6 +16,7 @@ Repos and Linear projects (team Furtivespy, id <UUID_2>; Backlog status id <UUID
 - Iconic Recipes (<UUID_5>) → https://github.com/furtivespy/iconic-recipes
 - Land Here (<UUID_6>) → https://github.com/furtivespy/land-here
 - Stancy Bot (<UUID_7>) → https://github.com/furtivespy/gwj-discord-bot
+- Barrelhouse Bill (<UUID_8>) → https://github.com/furtivespy/barrelhouse-bill-bot
 
 For each repo (use read-only cloud agents for the repo scan, respecting the Bot-Work soft max of 6 running cloud agents; queue the rest for when slots free; agents must not open PRs or push):
 1. Inventory every hard-coded AI model ID (Gemini/Imagen/OpenAI/Anthropic/etc.), SDKs, runtime (Node/Bun versions, Docker base images, GitHub Actions versions), and direct dependencies with current vs latest versions. Note which open Dependabot PRs already cover.
