@@ -3,7 +3,7 @@
 - Folder id: <UUID_10>
 - Status: enabled
 - Trigger: When a Linear issue is created or when a Linear issue changes status
-- Trigger JSON: {"type":"group","listeners":[{"type":"linear","event":{"case":"issueCreated"},"projectIds":["<UUID_3>","<UUID_4>","<UUID_5>","<UUID_6>","<UUID_7>"],"teamIds":["<UUID_2>"]},{"type":"linear","event":{"case":"statusChanged","statusIds":["<UUID_11>"]},"projectIds":["<UUID_3>","<UUID_4>","<UUID_5>","<UUID_6>","<UUID_7>"],"teamIds":["<UUID_2>"]}]}
+- Trigger JSON: {"type":"group","listeners":[{"type":"linear","event":{"case":"issueCreated"},"projectIds":["<UUID_3>","<UUID_4>","<UUID_5>","<UUID_6>","<UUID_7>","<UUID_8>"],"teamIds":["<UUID_2>"]},{"type":"linear","event":{"case":"statusChanged","statusIds":["<UUID_11>"]},"projectIds":["<UUID_3>","<UUID_4>","<UUID_5>","<UUID_6>","<UUID_7>","<UUID_8>"],"teamIds":["<UUID_2>"]}]}
 
 ## Saved prompt
 
@@ -41,6 +41,7 @@ Webhook username from Linear project:
 - Iconic Recipes → Director of Iconic Recipes
 - Land Here → Director of Land Here
 - Stancy Bot → Director of Stancy Bot
+- Barrelhouse Bill → Director of Barrelhouse Bill
 Else "Director of <project name>".
 
 Every allowed embed MUST include: Ticket (id and title, linked), Status (current Linear status), PR (linked, when one exists). On a QA-pass handoff, also mention that QA screenshots are on the PR, and attach one QA screenshot as the embed image if QA gave a public image URL.
@@ -105,6 +106,7 @@ If it matches:
    - Iconic Recipes (<UUID_5>) → https://github.com/furtivespy/iconic-recipes
    - Land Here (<UUID_6>) → https://github.com/furtivespy/land-here
    - Stancy Bot (<UUID_7>) → https://github.com/furtivespy/gwj-discord-bot
+   - Barrelhouse Bill (<UUID_8>) → https://github.com/furtivespy/barrelhouse-bill-bot
    If the project is not in this map, tell Will and stop.
 2. Launch a Cursor cloud agent on the matching repo with a clear brief plus the Linear issue URL. This is pass 1 of at most 3 passes.
 3. Set In Progress. Post Discord "<id> worker starting". No Will chat unless blocked.
