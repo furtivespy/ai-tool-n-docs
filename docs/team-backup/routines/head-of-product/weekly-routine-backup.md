@@ -2,7 +2,7 @@
 
 - Folder id: weekly-routine-backup
 - Status: enabled
-- Schedule: `CRON_TZ=America/New_York 45 19 * * 0` (every Sunday around 7:45 PM America/New_York)
+- Schedule: `CRON_TZ=America/New_York 45 19 * * 0` (every Sunday around 7:45 PM America/New_York, may run up to 15 min early or 10 min late)
 - Timing: flexible, earlyMinutes 15, lateMinutes 10
 
 ## Saved prompt
