@@ -2,8 +2,7 @@
 
 - Folder id: <UUID_10>
 - Status: enabled
-- Trigger: When a Linear issue is created or when a Linear issue changes status
-- Trigger JSON: {"type":"group","listeners":[{"type":"linear","event":{"case":"issueCreated"},"projectIds":["<UUID_3>","<UUID_4>","<UUID_5>","<UUID_6>","<UUID_7>","<UUID_8>"],"teamIds":["<UUID_2>"]},{"type":"linear","event":{"case":"statusChanged","statusIds":["<UUID_11>"]},"projectIds":["<UUID_3>","<UUID_4>","<UUID_5>","<UUID_6>","<UUID_7>","<UUID_8>"],"teamIds":["<UUID_2>"]}]}
+- Trigger: {"type":"group","listeners":[{"type":"linear","event":{"case":"issueCreated"},"projectIds":["<UUID_3>","<UUID_4>","<UUID_5>","<UUID_6>","<UUID_7>","<UUID_8>"],"teamIds":["<UUID_2>"]},{"type":"linear","event":{"case":"statusChanged","statusIds":["<UUID_11>"]},"projectIds":["<UUID_3>","<UUID_4>","<UUID_5>","<UUID_6>","<UUID_7>","<UUID_8>"],"teamIds":["<UUID_2>"]}]}
 
 ## Saved prompt
 

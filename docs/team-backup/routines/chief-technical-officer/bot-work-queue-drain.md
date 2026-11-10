@@ -2,9 +2,8 @@
 
 - Folder id: <UUID_16>
 - Status: enabled
-- Trigger: Every 20 minutes, 9:00 AM – 10:40 PM (may run up to 19 min late)
-- Schedule: CRON_TZ=America/New_York */20 9-22 * * *
-- Timing: flexible, earlyMinutes 0, lateMinutes 19
+- Schedule: `CRON_TZ=America/New_York */20 9-22 * * *`
+- Timing: flexible; earlyMinutes 0; lateMinutes 19
 
 ## Saved prompt
 

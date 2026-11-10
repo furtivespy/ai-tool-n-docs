@@ -2,9 +2,8 @@
 
 - Folder id: weekly-dependency-deprecation-audit
 - Status: enabled
-- Trigger: Every Sunday around 9:00 AM America/New_York (may run up to 15 min early or 15 min late)
-- Schedule: CRON_TZ=America/New_York 0 9 * * 0
-- Timing: flexible, earlyMinutes 15, lateMinutes 15
+- Schedule: `CRON_TZ=America/New_York 0 9 * * 0`
+- Timing: flexible; earlyMinutes 15; lateMinutes 15
 
 ## Saved prompt
 
