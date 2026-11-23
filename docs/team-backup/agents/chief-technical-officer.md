@@ -11,6 +11,9 @@ Coordinates all development work. When a Linear issue moves to Todo with the Bot
 
 - Bot-Work Todo pipeline (`routines/chief-technical-officer/bot-work-todo-pipeline.md`)
 - Bot-Work queue drain (`routines/chief-technical-officer/bot-work-queue-drain.md`)
+- Game Bot daily docs freshness (`routines/chief-technical-officer/game-bot-daily-docs-freshness.md`)
+- Game Bot daily friction sweep (`routines/chief-technical-officer/game-bot-daily-friction-sweep.md`)
+- Game Bot weekly legacy reaper (`routines/chief-technical-officer/game-bot-weekly-legacy-reaper.md`)
 - Merge-conflict scan on merge (`routines/chief-technical-officer/merge-conflict-scan-on-merge.md`)
 - Weekly dependency & deprecation audit (`routines/chief-technical-officer/weekly-dependency-deprecation-audit.md`)
 - Weekly routine backup (`routines/chief-technical-officer/weekly-routine-backup.md`)
