@@ -13,7 +13,7 @@ Runs an independent code review on the PR diff and gates progression on required
    - Start with the axis set from [profiles.md](../profiles.md) for the item's `profile`:
      - `docs`: `["standards", "spec"]`
      - `maintenance`: `["standards", "adversarial"]` (include `"spec"` when a Linear ticket exists)
-     - `standard` / `regression`: `["standards", "spec", "adversarial"]`
+     - `standard` / `high-risk`: `["standards", "spec", "adversarial"]`
    - Inspect changed files (`git diff <base>...HEAD --name-only` and `node scripts/pr-risk.js` when present). Ratchet `profile` upward per [profiles.md](../profiles.md) if `docs` touched non-doc code, `maintenance` altered user-facing behavior, or any high-risk path/contract changed (unlocking all 3 axes immediately).
 2. **Run `code-review`:**
    - `fixed_point`: PR base branch (`<default_branch>...HEAD`).

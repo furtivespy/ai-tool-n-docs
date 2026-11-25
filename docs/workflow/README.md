@@ -22,7 +22,7 @@ Consult each file only for the branch or decision it owns:
 | File | Owns | Read when |
 | --- | --- | --- |
 | [registry.yaml](registry.yaml) | Linear projects, GitHub repos, local directories, capabilities, Discord personas | Mapping a project/repo or checking `ship_pr` / `live_discord_qa` / cleanup support |
-| [profiles.md](profiles.md) | Effort scaling (`docs`, `maintenance`, `standard`, `regression`), one-way escalation | Resolving review axes, QA depth, or checking whether a diff escalates risk |
+| [profiles.md](profiles.md) | Effort scaling (`docs`, `maintenance`, `standard`, `high-risk`), one-way escalation | Resolving review axes, QA depth, or checking whether a diff escalates risk |
 | [runtime.md](runtime.md) | Location (`t3-local` vs `cursor-cloud`), harness (`antigravity` vs `cursor`), models, threads | Dispatching any agent, choosing a harness/model tier, or resuming threads |
 | [stages/01-trigger.md](stages/01-trigger.md) | Event filters, queue drain order, conflict scans, cleanup sweeps, dep audit | Handling an incoming trigger or cron wake |
 | [stages/02-implement.md](stages/02-implement.md) | Implementation, fix passes, local verify, PR template, pre-merge `Cleanup:` check | Launching or running Step 2 / Step 4 / Step 6 code work |

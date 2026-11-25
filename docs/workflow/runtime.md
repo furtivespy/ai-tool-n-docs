@@ -48,6 +48,7 @@ stage_overrides:
       standards: inherit
       spec: inherit
       adversarial: alternate    # prefer opposite harness (antigravity <-> cursor) for diversity when available
+    # review-standard tasks route through cursor (grok-4.7) when available for cross-family review against Claude-written code, falling back to the inherited harness (antigravity claude-sonnet-5-5) if cursor is unavailable
   qa:
     location: grok-box          # QA Department with local test bot + browser
   merge_gate:
@@ -80,27 +81,25 @@ stage_overrides:
 
 ## Per-Stage & Per-Profile Model Routing
 
-Logical tiers decouple stage instructions from vendor model renames. Fill concrete `{ model, options }` bindings in the active table below from `orchestrator_capabilities`.
+Logical tiers decouple stage instructions from vendor model updates. Verify availability with `orchestrator_capabilities` once per parent thread.
 
-| Stage / Axis | `docs` | `maintenance` | `standard` | `regression` |
+| Stage / Axis | `docs` | `maintenance` | `standard` | `high-risk` |
 | --- | --- | --- | --- | --- |
-| Step 2 Implement / Fix | `fast` | `mid-coding` | `primary-coding` | `top-coding` |
-| Step 3 Review — Standards | `fast` | `fast` | `fast` | `mid-reasoning` |
-| Step 3 Review — Spec | `fast` | `mid-reasoning` | `mid-reasoning` | `top-reasoning` |
-| Step 3 Review — Adversarial | *(skip)* | `primary-reasoning` | `top-reasoning` | `top-reasoning` |
-| Step 7 Merge Gate (`ship-pr`) | `fast` | `fast` | `fast` | `mid-reasoning` |
+| Step 2 Implement / Fix | `fast` | `standard` | `standard` | `deep` |
+| Step 3 Review — Standards | `fast` | `fast` | `fast` | `review-standard` |
+| Step 3 Review — Spec | `fast` | `review-standard` | `review-standard` | `deep` |
+| Step 3 Review — Adversarial | *(skip)* | `review-standard` | `deep` | `deep` |
+| Step 7 Merge Gate (`ship-pr`) | `fast` | `fast` | `fast` | `standard` |
 | Step 8 Post-Ship Friction | `inherit-implement` | `inherit-implement` | `inherit-implement` | `inherit-implement` |
 
 ### Active Model Bindings (Edit Here to Swap Models)
 
 | Tier | `antigravity` binding (`model` / `options`) | `cursor` binding (`model` / `options`) |
 | --- | --- | --- |
-| `fast` | `<set from orchestrator_capabilities>` | `<set from orchestrator_capabilities>` |
-| `mid-coding` | `<set from orchestrator_capabilities>` | `<set from orchestrator_capabilities>` |
-| `primary-coding` | `<set from orchestrator_capabilities>` | `<set from orchestrator_capabilities>` |
-| `top-coding` | `<set from orchestrator_capabilities>` | `<set from orchestrator_capabilities>` |
-| `mid-reasoning` | `<set from orchestrator_capabilities>` | `<set from orchestrator_capabilities>` |
-| `top-reasoning` | `<set from orchestrator_capabilities>` | `<set from orchestrator_capabilities>` |
+| `fast` | `claude-sonnet-5-5` (`thought_level: medium`) | `claude-haiku-5-5` (`reasoning_effort: medium`) |
+| `standard` | `claude-opus-5-5` (`thought_level: medium`) | `claude-opus-5-5` (`effort: medium`) |
+| `review-standard` | *(prefers `cursor` → `grok-4.7`; fallback `claude-sonnet-5-5`, `thought_level: high`)* | `grok-4.7` (`reasoning_effort: high`) |
+| `deep` | `claude-opus-5-5` (`thought_level: high`) | `claude-opus-5-5` (`effort: high`) |
 
 ## Thread Topology Contract
 

@@ -9,13 +9,13 @@ Effort profiles scale **review axes**, **QA depth**, and **merge gate strictness
 | `docs` | `standards`, `spec` (skip `adversarial`) | Repo `verify` (`lint` / doc checks) | **`skip`** (strictly docs/markdown diffs only) | Auto-merge `low` (`patch`) |
 | `maintenance` | `standards`, `adversarial` (+ `spec` if a Linear ticket exists) | Full `verify` | **`smoke`** on `live_discord_qa: true` bots when deps/runtime code change; **`skip`** only if diff is test/tooling/docs-only or `live_discord_qa: false` | Auto-merge `low` (`patch`); escalate if `medium`/`high` |
 | `standard` | All 3: `standards`, `spec`, `adversarial` | Full `verify` + `control-*` | **`normal`** (ticket `Done when` items + screenshots) | Auto-merge `low` or `medium`; park `high` |
-| `regression` | All 3 (strict, highest-reasoning review model) | Full `verify` + `control-*` | **`regression`** (`Done when` + adjacent commands + error/edge paths + screenshots) | **Never** auto-merge (always park for owner) |
+| `high-risk` | All 3 (deep review tiers) | Full `verify` + `control-*` | **`regression`** (`Done when` + adjacent commands + error/edge paths + screenshots) | **Never** auto-merge (always park for owner) |
 
 ## Resolution Precedence
 
 Resolve the starting profile in Step 1 ([01-trigger.md](stages/01-trigger.md)) in this order:
 
-1. **Explicit Linear label:** `profile:docs`, `profile:maintenance`, `profile:standard`, or `profile:regression`.
+1. **Explicit Linear label:** `profile:docs`, `profile:maintenance`, `profile:standard`, or `profile:high-risk`.
 2. **Trigger default:**
    - `docs-freshness` → `docs`
    - `friction-sweep`, `legacy-reaper`, or Low-risk dependency audit sub-issue → `maintenance`
@@ -28,8 +28,7 @@ Step 3 ([03-review.md](stages/03-review.md)) and Step 5 ([04-qa.md](stages/04-qa
 - **`docs` touches non-doc/code files:** escalate to `maintenance` (or `standard` if user-facing behavior changed).
 - **`maintenance` changes user-facing command output or behavior:** escalate to `standard`.
 - **`scripts/pr-risk.js` returns `high`**, or diff alters slash-command contracts, `db/`, migrations, `Dockerfile`, `.github/workflows/`, or merge-gate files:
-  - Review runs all 3 axes (`standards`, `spec`, `adversarial`).
-  - Merge gate parks for owner (`high` risk).
+  - Escalate the profile to **`high-risk`** (all 3 review axes, `regression` QA depth, and Merge Gate parks for owner).
 
 ## QA `skip` Safety Contract
 

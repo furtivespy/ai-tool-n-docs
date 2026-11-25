@@ -22,7 +22,7 @@ Audits merge readiness for every repository with `capabilities.ship_pr: true` in
    - If QA block is missing for the current `headRefOid`, return to Step 5 ([04-qa.md](04-qa.md)) rather than bypassing.
 4. **Compute risk tier:**
    - Run `gh pr diff <n> --name-only | node scripts/pr-risk.js`. If it prints `high`, tier is `high`.
-   - Apply remaining rules in `docs/merge-policy.md` (`low`, `medium`, `high`). Any non-`none` `User call-out`, `major` label, or `profile == regression` forces `high`.
+   - Apply remaining rules in `docs/merge-policy.md` (`low`, `medium`, `high`). Any non-`none` `User call-out`, `major` label, or `profile == high-risk` forces `high`.
 5. **Query `ship-pr` autopilot:**
    - Map `statusCheckRollup` to `{name, status}` and add `{"login": "cursor", "state": "COMMENTED"}` to `reviews` **only** when Step 3 passes all checks.
    - Run `npx kcd-skills@latest autopilot ship-pr --input state.json --risk <tier> --json`.
