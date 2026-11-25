@@ -7,7 +7,7 @@ Effort profiles scale **review axes**, **QA depth**, and **merge gate strictness
 | Profile | Review axes ([03-review.md](stages/03-review.md)) | Local verify / CI | Manual QA depth ([04-qa.md](stages/04-qa.md)) | Merge gate ([05-merge-gate.md](stages/05-merge-gate.md)) |
 | --- | --- | --- | --- | --- |
 | `docs` | `standards`, `spec` (skip `adversarial`) | Repo `verify` (`lint` / doc checks) | **`skip`** (strictly docs/markdown diffs only) | Auto-merge `low` (`patch`) |
-| `maintenance` | `standards`, `adversarial` (+ `spec` if a Linear ticket exists) | Full `verify` | **`smoke`** on `live_discord_qa: true` bots when deps/runtime code change; **`skip`** only if diff is test/tooling/docs-only or `live_discord_qa: false` | Auto-merge `low` (`patch`); escalate if `medium`/`high` |
+| `maintenance` | `standards`, `adversarial` (+ `spec` if a Linear ticket exists) | Full `verify` | **`smoke`** on `live_qa: true` repos when deps/runtime code change; **`skip`** only if diff is test/tooling/docs-only or `live_qa: false` | Auto-merge `low` (`patch`); escalate if `medium`/`high` |
 | `standard` | All 3: `standards`, `spec`, `adversarial` | Full `verify` + `control-*` | **`normal`** (ticket `Done when` items + screenshots) | Auto-merge `low` or `medium`; park `high` |
 | `high-risk` | All 3 (deep review tiers) | Full `verify` + `control-*` | **`regression`** (`Done when` + adjacent commands + error/edge paths + screenshots) | **Never** auto-merge (always park for owner) |
 
@@ -32,6 +32,6 @@ Step 3 ([03-review.md](stages/03-review.md)) and Step 5 ([04-qa.md](stages/04-qa
 
 ## QA `skip` Safety Contract
 
-- `qa.depth: skip` is valid **only** when the diff meets one of the matrix exemptions above (`docs`-only diff, test/tooling-only `maintenance` diff, or `capabilities.live_discord_qa: false` in [registry.yaml](registry.yaml)).
-- Dependency bumps and runtime code edits on Discord bots (`live_discord_qa: true`) run **`smoke`** QA at minimum to verify real startup and basic command response with the test token.
+- `qa.depth: skip` is valid **only** when the diff meets one of the matrix exemptions above (`docs`-only diff, test/tooling-only `maintenance` diff, or `capabilities.live_qa: false` in [registry.yaml](registry.yaml)).
+- Dependency bumps and runtime code edits on `live_qa: true` repos run **`smoke`** QA at minimum to verify real startup and basic live interaction (test bot command for `discord-bot` repos; local browser page load for `web-app` repos).
 - Whenever `skip` applies, Step 5 still stamps `<!-- qa-status -->` with `Verdict: PASS`, `Depth: skip (<reason>)`, and exact `Head` SHA so Step 7 audits an explicit record instead of guessing.
