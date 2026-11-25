@@ -30,6 +30,7 @@ Consult each file only for the branch or decision it owns:
 | [stages/04-qa.md](stages/04-qa.md) | QA depth execution, `<!-- qa-status -->` block contract, PASS/FAIL/BLOCKED routing | Running QA or handling a QA reply |
 | [stages/05-merge-gate.md](stages/05-merge-gate.md) | `ship-pr` audit, risk tier, release label enforcement, merge vs park, deploy check | Running Step 7 on a repo with `capabilities.ship_pr: true` |
 | [stages/06-post-ship.md](stages/06-post-ship.md) | Friction filing, cleanup verification, final Linear comment/status, Discord closeout | Closing out after merge, park, non-`ship-pr` QA pass, or loop cap |
+| [prompts/README.md](prompts/README.md) | Thin, ready-to-paste Grok Bot CTO and QA Department prompts + box setup | Updating Grok Bot routines or QA Department profile |
 | [skills/code-review/SKILL.md](../../skills/code-review/SKILL.md) | Three-axis diff review (`Standards`, `Spec`, `Adversarial`) | Running Step 3 |
 
 ## Pass Cap & Loop Semantics

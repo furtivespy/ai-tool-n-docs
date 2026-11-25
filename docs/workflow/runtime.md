@@ -76,8 +76,26 @@ If `cursor` is removed from `enabled_harnesses`, disabled in `orchestrator_capab
 - Check the active time-window concurrency limit before launching new work; when crossing from overnight (8) to daytime (4) at 08:00, let running agents finish naturally and hold new launches until active count < 4.
 
 **Grok CTO (`grok-box`) → `t3-local` dispatch bridges:**
-1. **Push (primary when workstation is online):** Signed T3 Code webhook task (`schedule_task` type `webhook`) accepting `{ work_id, repo_slug, stage, profile, location, harness, pr_url, linear_url, pass }`.
-2. **Fallback (`cursor-cloud` or `hold`):** If the `t3-local` webhook is unreachable or times out when the workstation is offline/asleep, CTO falls back to `cursor-cloud` when `fallback_location == cursor-cloud` and `cursor` is enabled/in-quota; otherwise (`fallback_location == hold`, or Cursor unavailable/spent) hold the item in `Todo`.
+1. **Push (primary when workstation is online):** Signed/token-authenticated T3 Code webhook task (`schedule_task` type `webhook`). Grok CTO reads the URL from its local `t3-webhook.txt` secret file (never printed or committed) and POSTs JSON using this untrusted-ID-only envelope:
+   ```json
+   {
+     "work_id": "FUR-123",
+     "repo_slug": "game-bot",
+     "stage": "implement",
+     "profile": "standard",
+     "pass": 1,
+     "trigger_kind": "linear_todo",
+     "pr_number": null,
+     "t3_thread_id": null
+   }
+   ```
+   - `stage`: `implement | fix | merge_gate | post_ship`
+   - `work_id`: `FUR-<n>` or sweep slug (`docs-freshness`, `friction-sweep`, `legacy-reaper`)
+   - The T3 webhook task validates every field against allowlists + [registry.yaml](registry.yaml) and fetches ticket/PR/sweep instructions fresh from Linear MCP, GitHub, or the target repo.
+2. **T3 → Grok return handoff (via GitHub PR labels + HTML markers):**
+   - **Needs live QA (`smoke` / `normal` / `regression`):** T3 adds label `ready-for-qa` to the PR and posts comment `<!-- workflow:qa-handoff work_id=<id> repo_slug=<slug> profile=<profile> depth=<depth> pass=<pass> head=<headRefOid> t3_thread_id=<threadId> -->`. Grok CTO's queue drain removes `ready-for-qa` on dispatch, hands off to QA Department, and POSTs back `stage: "merge_gate"` (on `QA: PASS`) or `stage: "fix"` (on `QA: FAIL`, `pass + 1`).
+   - **Terminal outcome (when `qa_depth == skip`, `merge_gate` finishes, or `loop_capped`):** T3 posts `<!-- workflow:terminal outcome=<merged|parked|ready_for_will|empty_diff|loop_capped> work_id=<id> merge_sha=<sha|none> deploy_check=<passed|failed|none> park_reason=<text|none> -->` on the PR and adds label `workflow:notify` (unless merged, which also triggers CTO's `pr-merged` listener). Grok CTO retains sole ownership of Discord embeds via its local `discord-webhook.txt`, posts the single Moment-2 embed, and removes `workflow:notify`.
+3. **Fallback (`cursor-cloud` or `hold`):** If the `t3-local` webhook is unreachable or times out when the workstation is offline/asleep, CTO falls back to `cursor-cloud` when `fallback_location == cursor-cloud` and `cursor` is enabled/in-quota; otherwise (`fallback_location == hold`, or Cursor unavailable/spent) hold the item in `Todo`.
 
 ### 2. `cursor-cloud` (Away-from-PC / Fallback Runner)
 - Runs in Cursor Cloud VMs provisioned by each repo's `.cursor/environment.json`.
