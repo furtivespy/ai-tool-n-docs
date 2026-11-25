@@ -49,7 +49,7 @@ stage_overrides:
       standards: inherit
       spec: inherit
       adversarial: alternate    # cross to cursor only when cursor is in enabled_harnesses and within quota
-    # review-standard routes through cursor (grok-4.7) only when cursor is enabled and within quota; otherwise uses antigravity (claude-sonnet-5-5)
+    # review-standard routes through cursor (grok-4.7) only when cursor is enabled and within quota; otherwise uses antigravity (gemini-4-neon, thought_level: medium)
   qa:
     location: grok-box          # QA Department with local test bot + browser
   merge_gate:
@@ -64,8 +64,12 @@ stage_overrides:
 
 If `cursor` is removed from `enabled_harnesses`, disabled in `orchestrator_capabilities`, or returns a quota/rate-limit error:
 
-1. **Stay on `antigravity`:** Route or immediately retry the sub-agent on `antigravity` using its binding in the Active Model Bindings table (`claude-sonnet-5-5`, `thought_level: high` for `review-standard`; `claude-opus-5-5`, `thought_level: high` for `deep`) — never fail a stage because Cursor quota ran out.
+1. **Stay on `antigravity`:** Route or immediately retry the sub-agent on `antigravity` using its binding in the Active Model Bindings table (`gemini-4-neon`, `thought_level: medium` for `review-standard`; `gemini-4-neon`, `thought_level: high` for `deep`) — never fail a stage because Cursor quota ran out.
 2. **Hold offline runs:** Treat `fallback_location` as `hold` so items wait in `Todo` until `t3-local` is back online instead of falling back to `cursor-cloud`.
+
+If `antigravity` returns a third-party quota error (e.g., on `claude-sonnet-5-5` for `fast`):
+
+- **Fall back to native Gemini (`gemini-4-neon`):** Immediately retry on `antigravity` with `gemini-4-neon` (`thought_level: medium` for `fast` / `standard` / `review-standard`; `thought_level: high` for `deep`) — never use `claude-opus-5-5` on `antigravity`.
 
 ## Location Backends
 
@@ -122,10 +126,10 @@ Logical tiers decouple stage instructions from vendor model updates. Verify avai
 
 | Tier | `antigravity` binding (`model` / `options`) | `cursor` binding (`model` / `options`) |
 | --- | --- | --- |
-| `fast` | `claude-sonnet-5-5` (`thought_level: medium`) | `claude-haiku-5-5` (`reasoning_effort: medium`) |
-| `standard` | `claude-opus-5-5` (`thought_level: medium`) | `claude-opus-5-5` (`effort: medium`) |
-| `review-standard` | *(prefers `cursor` → `grok-4.7`; fallback `claude-sonnet-5-5`, `thought_level: high`)* | `grok-4.7` (`reasoning_effort: high`) |
-| `deep` | `claude-opus-5-5` (`thought_level: high`) | `claude-opus-5-5` (`effort: high`) |
+| `fast` | `claude-sonnet-5-5` (`thought_level: medium`) *(third-party quota fallback: `gemini-4-neon`, `thought_level: medium`)* | `claude-haiku-5-5` (`reasoning_effort: medium`) |
+| `standard` | `gemini-4-neon` (`thought_level: medium`) | `claude-opus-5-5` (`effort: medium`) |
+| `review-standard` | *(prefers `cursor` → `grok-4.7`; fallback `gemini-4-neon`, `thought_level: medium`)* | `grok-4.7` (`reasoning_effort: high`) |
+| `deep` | `gemini-4-neon` (`thought_level: high`) | `claude-opus-5-5` (`effort: high`) |
 
 ## Thread Topology Contract
 
