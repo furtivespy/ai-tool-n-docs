@@ -10,7 +10,7 @@ Change these settings here (or override `location` / `harness` per project in [r
 defaults:
   location: t3-local            # t3-local | cursor-cloud
   harness: antigravity          # antigravity | cursor (applies when location == t3-local)
-  enabled_harnesses: [antigravity, cursor] # remove cursor to force Antigravity-only across every stage
+  enabled_harnesses: [antigravity]          # antigravity-only active; add cursor back to re-enable cross-harness Cursor stages
   fallback_location: cursor-cloud          # cursor-cloud | hold (set to hold when Cursor quota is spent so offline items wait in Todo)
   projects_root_env: T3_PROJECTS_ROOT
 
