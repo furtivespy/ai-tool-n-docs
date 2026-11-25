@@ -14,8 +14,17 @@ defaults:
   projects_root_env: T3_PROJECTS_ROOT
 
 concurrency:
-  t3_local_max_active: 6        # keep workstation responsive
-  cursor_cloud_soft_max: 6      # reserve 2 of ~8 Pro slots for ad-hoc runs
+  timezone: America/New_York
+  windows:
+    day:
+      hours: "08:00-23:00"      # daytime headroom for interactive work
+      max_concurrent: 4
+    overnight:
+      hours: "23:00-08:00"      # overnight full-capacity window
+      max_concurrent: 8
+  backends:
+    t3_local: inherit           # inherit active window cap, or set per-backend override
+    cursor_cloud: inherit       # inherit active window cap (checks running agents across all scopes)
 
 harnesses:
   antigravity:
@@ -55,6 +64,7 @@ stage_overrides:
 - Runs locally in T3 Code using isolated git worktrees per ticket under `<projects_root>/<local_dir>` (from [registry.yaml](registry.yaml)).
 - Supports explicit **`harness`** selection (`antigravity` or `cursor`) per stage or per repo via `delegate_task` (`target: { providerInstanceId, model, options }`). Verify live provider availability with `orchestrator_capabilities` once per parent thread.
 - Supports resuming the Step 2 worktree thread for fix passes and Step 8 friction capture.
+- Check the active time-window concurrency limit before launching new work; when crossing from overnight (8) to daytime (4) at 08:00, let running agents finish naturally and hold new launches until active count < 4.
 
 **Grok CTO (`grok-box`) → `t3-local` dispatch bridges:**
 1. **Push (primary when workstation is online):** Signed T3 Code webhook task (`schedule_task` type `webhook`) accepting `{ work_id, repo_slug, stage, profile, location, harness, pr_url, linear_url, pass }`.
@@ -63,7 +73,7 @@ stage_overrides:
 ### 2. `cursor-cloud` (Away-from-PC / Fallback Runner)
 - Runs in Cursor Cloud VMs provisioned by each repo's `.cursor/environment.json`.
 - `harness` is implicitly Cursor Cloud; `harness_by_axis` runs parallel sub-agents inside the cloud review agent.
-- Enforce `cursor_cloud_soft_max: 6` across all scopes before every launch: count active running cloud agents first, drain in-flight review/fix/gate work before new `Todo` tickets, and hold silently when at capacity.
+- Enforce the active time-window concurrency limit across all scopes before every launch: count active running cloud agents first, drain in-flight review/fix/gate work before new `Todo` tickets, and hold silently when at or above capacity (let overnight runs finish naturally past 08:00 without killing them).
 
 ### 3. `grok-box` (Orchestrator & Live QA)
 - Owns Step 1 intake triggers and routines (CTO) and Step 5 live Discord verification (QA Department).
