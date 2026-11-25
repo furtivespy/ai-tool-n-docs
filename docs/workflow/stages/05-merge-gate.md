@@ -24,7 +24,7 @@ Audits merge readiness for every repository with `capabilities.ship_pr: true` in
    - Run `gh pr diff <n> --name-only | node scripts/pr-risk.js`. If it prints `high`, tier is `high`.
    - Apply remaining rules in `docs/merge-policy.md` (`low`, `medium`, `high`). Any non-`none` `User call-out`, `major` label, or `profile == high-risk` forces `high`.
 5. **Query `ship-pr` autopilot:**
-   - Map `statusCheckRollup` to `{name, status}` and add `{"login": "cursor", "state": "COMMENTED"}` to `reviews` **only** when Step 3 passes all checks.
+   - Map `statusCheckRollup` to `{name, status}` and add `{"login": "qa-department", "state": "COMMENTED"}` to `reviews` **only** when Step 3 passes all checks.
    - Run `npx kcd-skills@latest autopilot ship-pr --input state.json --risk <tier> --json`.
    - If the returned action requires code edits, CI fixes, unresolved review feedback, or conflict resolution: return `needs_code_fix` if `pass < 6`, otherwise **park for owner**.
 6. **Enforce release label (`patch` | `minor` | `major`):**
