@@ -10,7 +10,8 @@ Change these settings here (or override `location` / `harness` per project in [r
 defaults:
   location: t3-local            # t3-local | cursor-cloud
   harness: antigravity          # antigravity | cursor (applies when location == t3-local)
-  fallback_location: cursor-cloud
+  enabled_harnesses: [antigravity, cursor] # remove cursor to force Antigravity-only across every stage
+  fallback_location: cursor-cloud          # cursor-cloud | hold (set to hold when Cursor quota is spent so offline items wait in Todo)
   projects_root_env: T3_PROJECTS_ROOT
 
 concurrency:
@@ -47,8 +48,8 @@ stage_overrides:
     harness_by_axis:
       standards: inherit
       spec: inherit
-      adversarial: alternate    # prefer opposite harness (antigravity <-> cursor) for diversity when available
-    # review-standard tasks route through cursor (grok-4.7) when available for cross-family review against Claude-written code, falling back to the inherited harness (antigravity claude-sonnet-5-5) if cursor is unavailable
+      adversarial: alternate    # cross to cursor only when cursor is in enabled_harnesses and within quota
+    # review-standard routes through cursor (grok-4.7) only when cursor is enabled and within quota; otherwise uses antigravity (claude-sonnet-5-5)
   qa:
     location: grok-box          # QA Department with local test bot + browser
   merge_gate:
@@ -58,6 +59,13 @@ stage_overrides:
     location: inherit
     harness: inherit
 ```
+
+## Quota & Disabled-Harness Fallback
+
+If `cursor` is removed from `enabled_harnesses`, disabled in `orchestrator_capabilities`, or returns a quota/rate-limit error:
+
+1. **Stay on `antigravity`:** Route or immediately retry the sub-agent on `antigravity` using its binding in the Active Model Bindings table (`claude-sonnet-5-5`, `thought_level: high` for `review-standard`; `claude-opus-5-5`, `thought_level: high` for `deep`) — never fail a stage because Cursor quota ran out.
+2. **Hold offline runs:** Treat `fallback_location` as `hold` so items wait in `Todo` until `t3-local` is back online instead of falling back to `cursor-cloud`.
 
 ## Location Backends
 
@@ -69,7 +77,7 @@ stage_overrides:
 
 **Grok CTO (`grok-box`) → `t3-local` dispatch bridges:**
 1. **Push (primary when workstation is online):** Signed T3 Code webhook task (`schedule_task` type `webhook`) accepting `{ work_id, repo_slug, stage, profile, location, harness, pr_url, linear_url, pass }`.
-2. **Fallback (`cursor-cloud`):** If the `t3-local` webhook is unreachable or times out when the workstation is offline/asleep, CTO falls back to `cursor-cloud` unless the ticket explicitly requires `t3-local`.
+2. **Fallback (`cursor-cloud` or `hold`):** If the `t3-local` webhook is unreachable or times out when the workstation is offline/asleep, CTO falls back to `cursor-cloud` when `fallback_location == cursor-cloud` and `cursor` is enabled/in-quota; otherwise (`fallback_location == hold`, or Cursor unavailable/spent) hold the item in `Todo`.
 
 ### 2. `cursor-cloud` (Away-from-PC / Fallback Runner)
 - Runs in Cursor Cloud VMs provisioned by each repo's `.cursor/environment.json`.
