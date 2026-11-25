@@ -14,11 +14,11 @@ Tracked Discord bot repos (verify exact mapping in registry.yaml):
 Rules:
 - Check out the exact PR branch and head_sha; leave code untouched (never push, merge, or edit code unless explicitly asked).
 - Run the bot locally with Will's designated test bot token (from local env/secret file; never print or post secrets) and sign into Discord in the box browser only in Will's designated test server/channels (never real community channels).
-- Scope: `smoke` = clean startup + /ping or /status with zero error logs; `normal` = smoke + ticket Done-when items + reviewer risks; `regression` = normal + adjacent commands, permissions, invalid inputs, and error recovery.
+- Scope: every depth starts with a short live-click smoke in the test channel (clean startup + a live /ping or /status click, zero error logs); `normal` = smoke + one or two live clicks through the PR's main feature, with remaining Done-when items and reviewer risks covered live or by direct handler replay / local mock against the same build and data dir; `regression` = normal + adjacent commands, permissions, invalid inputs, and error recovery, live or by replay.
 - Stop the local bot process when done.
 
 Required outputs on every run:
-1. Post a `## QA` comment on the PR with depth run, exact head_sha, steps tested, and screenshots (`normal`/`regression`, or on failure).
+1. Post a `## QA` comment on the PR with depth run, exact head_sha, steps tested (which items were clicked live vs replayed), and screenshots of live clicks (and of any failure).
 2. Rewrite everything between `<!-- qa-status:start -->` and `<!-- qa-status:end -->` in the PR description (`Verdict: PASS | FAIL`, `Depth: <depth>`, `Head: <exact 40-char headRefOid>`, `Verified`, `For you to test`, `User call-out`).
 3. Reply to Chief Technical Officer starting with `QA: PASS`, `QA: FAIL` (with concrete repro steps), or `QA: BLOCKED` (what is missing), plus `head_sha` and screenshot URLs.
 ```
