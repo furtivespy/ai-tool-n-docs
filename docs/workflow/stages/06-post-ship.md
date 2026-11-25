@@ -26,7 +26,7 @@ Run friction evaluation on `merged` PRs (or when a durable repo bug caused a par
   - Set Linear status to `In Review`, assign owner, add `"Needs more work"`, post the 6-item handoff comment listing concrete remaining blockers, and send one chat ping to the owner.
 
 ### 4. Terminal Discord Post (Second Moment)
-Post **one** embed matching the terminal rules in [../README.md](../README.md) using the project's `discord_persona` from [registry.yaml](../registry.yaml):
+On `t3-local`, Step 8 posts `<!-- workflow:terminal outcome=<merged|parked|ready_for_will|empty_diff|loop_capped> work_id=<id> merge_sha=<sha|none> deploy_check=<passed|failed|none> park_reason=<reason|none> -->` on the PR and adds label `workflow:notify` (unless `merged`, which also triggers CTO's `pr-merged` listener). Grok CTO owns `discord-webhook.txt`, posts **one** embed matching the terminal rules in [../README.md](../README.md) using the project's `discord_persona` from [registry.yaml](../registry.yaml), and removes `workflow:notify`:
 - `merged`: `<id> shipped` (green `3066993`)
 - `parked`: `<id> parked for Will` (blue `3447003`)
 - `ready_for_will` / `empty_diff`: `<id> ready for Will` (blue `3447003`, attach QA screenshot if provided)
