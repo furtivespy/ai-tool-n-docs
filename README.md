@@ -11,7 +11,8 @@ stack shareable in public later.
 |------|---------|
 | `skills/` | Vendored agent skills (flat: one folder per skill) |
 | `docs/` | Workflow and topic docs |
-| `docs/automations/` | Canonical prompts for Cursor automations (config stays in agent settings) |
+| `docs/workflow/` | Modular 8-step agent delivery pipeline (registry, effort profiles, runtime/harness/model routing, stages 01–06) |
+| `docs/automations/` | Redirect stub for legacy automation docs (superseded by `docs/workflow/`) |
 | `tools/` | Tool inventory notes (CLIs, MCP, extensions). Start at `tools/inventory.md`. |
 | `scripts/` | Automation (none in v1; manual sync for now) |
 | `stack/` | Public-facing “what I use” notes |

@@ -1,0 +1,100 @@
+# Canonical project and repository registry for docs/workflow.
+# Linear UUIDs and Discord webhook URLs resolve dynamically via Linear MCP or local orchestrator config.
+# local_dir is relative to the workstation projects root configured in runtime.md.
+# runtime_override (optional): null to inherit runtime.md defaults, or { location, harness } (either key optional).
+
+linear_team: FUR
+
+projects:
+  game-bot:
+    linear_project: Game Bot
+    github_repo: furtivespy/games-discord-bot # not legacy inis-discord-bot
+    local_dir: discord-bot-inis
+    default_branch: master
+    discord_persona: Director of Game Bot
+    kind: discord-bot
+    capabilities:
+      ship_pr: true
+      live_discord_qa: true
+      control_skill: control-gamebot
+      cleanup_automations:
+        - friction-sweep
+        - docs-freshness
+        - legacy-reaper
+    runtime_override: null
+
+  bender-bot:
+    linear_project: Bender Bot
+    github_repo: furtivespy/node-discord-bot
+    local_dir: node-discord-bot
+    default_branch: master
+    discord_persona: Director of Bender Bot
+    kind: discord-bot
+    capabilities:
+      ship_pr: true
+      live_discord_qa: true
+      control_skill: control-bender
+      cleanup_automations:
+        - friction-sweep
+        - docs-freshness
+        - legacy-reaper
+    runtime_override: null
+
+  barrelhouse-bill:
+    linear_project: Barrelhouse Bill
+    github_repo: furtivespy/barrelhouse-bill-bot
+    local_dir: barrelhouse-bill-bot
+    default_branch: main
+    discord_persona: Director of Barrelhouse Bill
+    kind: discord-bot
+    capabilities:
+      ship_pr: true
+      live_discord_qa: true
+      control_skill: control-bill
+      cleanup_automations:
+        - friction-sweep
+        - docs-freshness
+        - legacy-reaper
+    runtime_override: null
+
+  stancy-bot:
+    linear_project: Stancy Bot
+    github_repo: furtivespy/gwj-discord-bot
+    local_dir: discord-bot-gwj
+    default_branch: main
+    discord_persona: Director of Stancy Bot
+    kind: discord-bot
+    capabilities:
+      ship_pr: false
+      live_discord_qa: true
+      control_skill: null
+      cleanup_automations: []
+    runtime_override: null
+
+  iconic-recipes:
+    linear_project: Iconic Recipes
+    github_repo: furtivespy/iconic-recipes
+    local_dir: iconic-recipes
+    default_branch: main
+    discord_persona: Director of Iconic Recipes
+    kind: web-app
+    capabilities:
+      ship_pr: false
+      live_discord_qa: false
+      control_skill: null
+      cleanup_automations: []
+    runtime_override: null
+
+  land-here:
+    linear_project: Land Here
+    github_repo: furtivespy/land-here
+    local_dir: land-here
+    default_branch: main
+    discord_persona: Director of Land Here
+    kind: web-app
+    capabilities:
+      ship_pr: false
+      live_discord_qa: false
+      control_skill: null
+      cleanup_automations: []
+    runtime_override: null
