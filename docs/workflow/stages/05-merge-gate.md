@@ -14,7 +14,7 @@ Audits merge readiness for every repository with `capabilities.ship_pr: true` in
    - Read PR metadata (`number`, `url`, `state`, `isDraft`, `mergeable`, `mergeStateStatus`, `headRefOid`, `statusCheckRollup`, `reviewDecision`, `body`, `labels`) via `gh pr view` or PR MCP tools.
 2. **Audit PR completeness & pre-merge `Cleanup:`:**
    - Confirm `Intent`, `Linear`, `Door`, `Cleanup`, and `Testing` are filled.
-   - If the PR left a compatibility shim, legacy path, or preserved old data while `## Cleanup` says `none`, return `needs_code_fix` (if `pass < 3`) or **park for owner**.
+   - If the PR left a compatibility shim, legacy path, or preserved old data while `## Cleanup` says `none`, return `needs_code_fix` (if `pass < 6`) or **park for owner**.
 3. **Verify `<!-- qa-status -->` freshness:**
    - Parse the PR body block between `<!-- qa-status:start -->` and `<!-- qa-status:end -->`.
    - Require: `Verdict: PASS`, `Head == headRefOid`, `For you to test: none`, and `Depth` matching [profiles.md](../profiles.md).
@@ -26,7 +26,7 @@ Audits merge readiness for every repository with `capabilities.ship_pr: true` in
 5. **Query `ship-pr` autopilot:**
    - Map `statusCheckRollup` to `{name, status}` and add `{"login": "cursor", "state": "COMMENTED"}` to `reviews` **only** when Step 3 passes all checks.
    - Run `npx kcd-skills@latest autopilot ship-pr --input state.json --risk <tier> --json`.
-   - If the returned action requires code edits, CI fixes, unresolved review feedback, or conflict resolution: return `needs_code_fix` if `pass < 3`, otherwise **park for owner**.
+   - If the returned action requires code edits, CI fixes, unresolved review feedback, or conflict resolution: return `needs_code_fix` if `pass < 6`, otherwise **park for owner**.
 6. **Enforce release label (`patch` | `minor` | `major`):**
    - Exactly one `patch` or `minor` label: continue.
    - Zero release labels: add `patch` (when `low`) or `minor` (when `medium`), unless the diff clearly warrants the other.

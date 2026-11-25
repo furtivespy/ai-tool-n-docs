@@ -1,6 +1,6 @@
 # Stage 02: Implement & Fix Passes (Steps 2, 4, 6)
 
-Handles initial implementation (`pass == 1`) and subsequent fix passes (`pass == 2 | 3`) returned from [03-review.md](03-review.md), [04-qa.md](04-qa.md), or [05-merge-gate.md](05-merge-gate.md).
+Handles initial implementation (`pass == 1`) and subsequent fix passes (`pass` 2–6) returned from [03-review.md](03-review.md), [04-qa.md](04-qa.md), or [05-merge-gate.md](05-merge-gate.md).
 
 ## Inputs
 
@@ -10,7 +10,7 @@ Handles initial implementation (`pass == 1`) and subsequent fix passes (`pass ==
 
 ## Thread Rule
 
-Per [runtime.md](../runtime.md), reuse the existing Step 2 worktree thread on `t3-local` across passes unless `pass == 3` and the thread is bloated or stuck (fresh escape hatch). On `cursor-cloud`, launch on the existing PR head branch.
+Per [runtime.md](../runtime.md), reuse the existing Step 2 worktree thread on `t3-local` across passes unless a later fix pass (`pass >= 3`) is bloated or stuck (fresh escape hatch). On `cursor-cloud`, launch on the existing PR head branch.
 
 ## Ordered Actions
 

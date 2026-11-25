@@ -1,6 +1,6 @@
 # Stage 06: Post-Ship Cleanup, Friction & Closeout (Step 8)
 
-Closes the loop after [05-merge-gate.md](05-merge-gate.md) finishes (`merged` or `parked`), after Step 5 passes on a non-`ship-pr` repo (`ready_for_will`), after an empty diff, or after Pass 3 hits the cap (`loop_capped`).
+Closes the loop after [05-merge-gate.md](05-merge-gate.md) finishes (`merged` or `parked`), after Step 5 passes on a non-`ship-pr` repo (`ready_for_will`), after an empty diff, or after Pass 6 hits the cap (`loop_capped`).
 
 ## Ordered Actions
 
@@ -22,7 +22,7 @@ Run friction evaluation on `merged` PRs (or when a durable repo bug caused a par
   - Keep/set Linear status to `In Review`, assign owner, post comment flagging the deploy check failure, and ping the owner directly in chat.
 - **`parked` or non-`ship-pr` `ready_for_will` or `empty_diff`:**
   - Set Linear status to `In Review`, assign owner, remove `"Needs more work"` if present, and post the 6-item handoff comment specified in [../README.md](../README.md).
-- **`loop_capped` (Pass 3 exhausted):**
+- **`loop_capped` (Pass 6 exhausted):**
   - Set Linear status to `In Review`, assign owner, add `"Needs more work"`, post the 6-item handoff comment listing concrete remaining blockers, and send one chat ping to the owner.
 
 ### 4. Terminal Discord Post (Second Moment)

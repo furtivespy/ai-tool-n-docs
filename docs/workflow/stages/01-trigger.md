@@ -15,7 +15,7 @@ Stay silent and ignore all other Linear events.
 ### 2. Periodic Queue Drain
 1. Check concurrency limits in [runtime.md](../runtime.md). Never exceed the active backend's cap.
 2. Drain work in strict priority order (oldest first within each tier):
-   - **In-flight pipeline work waiting for a slot:** review after Step 2 completes → fix pass (`pass < 3`) after `needs_more_work`, red CI tests, `QA: FAIL`, or merge-gate `needs_code_fix` → Step 7 merge gate after `QA: PASS` on `ship_pr: true` repos.
+   - **In-flight pipeline work waiting for a slot:** review after Step 2 completes → fix pass (`pass < 6`) after `needs_more_work`, red CI tests, `QA: FAIL`, or merge-gate `needs_code_fix` → Step 7 merge gate after `QA: PASS` on `ship_pr: true` repos.
    - **QA queue:** items with `ready_for_qa` + green CI tests not yet sent to QA Department. Leave active QA items alone unless QA has been silent for > 3 hours (nudge once).
    - **New `Todo` + `Bot-Work` tickets.**
 3. Skip tickets with a running worker or active QA run. Stop silently if nothing qualifies.
@@ -23,7 +23,7 @@ Stay silent and ignore all other Linear events.
 ### 3. Merge-Conflict Scan (`pr-merged`)
 When a PR merges in any repo listed in [registry.yaml](../registry.yaml), inspect every open PR in that repo (re-fetch once after a short wait if GitHub reports mergeability as `unknown`):
 - **Dependabot PRs** (`dependabot[bot]`): post `@dependabot rebase` unless that comment already exists since the last push. Launch no coding agent.
-- **Conflicting PR linked to an active `FUR` ticket** (not `Done`, `Canceled`, or `Duplicate`): enqueue a conflict-fix pass in Step 2 on the PR's head branch (counts toward the 3-pass cap). Move Linear to `In Progress`, comment that it returned for conflict resolution, omit the Discord pickup embed, and send one owner chat summary listing started/pending conflict-fix PRs.
+- **Conflicting PR linked to an active `FUR` ticket** (not `Done`, `Canceled`, or `Duplicate`): enqueue a conflict-fix pass in Step 2 on the PR's head branch (counts toward the 6-pass cap). Move Linear to `In Progress`, comment that it returned for conflict resolution, omit the Discord pickup embed, and send one owner chat summary listing started/pending conflict-fix PRs.
 - **All other conflicting PRs:** leave alone.
 
 ### 4. Scheduled Cleanup Sweeps (`docs-freshness`, `friction-sweep`, `legacy-reaper`)

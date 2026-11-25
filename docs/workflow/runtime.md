@@ -96,7 +96,7 @@ Logical tiers decouple stage instructions from vendor model renames. Fill concre
 
 | Stage | Thread lifetime | Why |
 | --- | --- | --- |
-| **Step 2 Implement & Steps 4/6 Fix passes** | **Same thread** on `t3-local` across Passes 1–3 *(fresh escape hatch on Pass 3 if context is bloated or stuck)*; fresh run on same PR branch on `cursor-cloud` | Preserves design rationale, test context, and firsthand friction memory across loops. |
+| **Step 2 Implement & Steps 4/6 Fix passes** | **Same thread** on `t3-local` across Passes 1–6 *(fresh escape hatch on later fix passes, `pass >= 3`, if context is bloated or stuck)*; fresh run on same PR branch on `cursor-cloud` | Preserves design rationale, test context, and firsthand friction memory across loops. |
 | **Step 3 Code Review** | **Always fresh thread** (spawning fresh parallel axis sub-agents) | Prevents author confirmation bias; evaluates only `git diff <base>...HEAD`, spec, and baselines. |
 | **Step 5 Manual QA** | **Always separate agent** (QA Department on `grok-box`) | Independent live Discord verification and browser session. |
 | **Step 7 Merge Gate** | **Always fresh, lightweight thread** | Independent compliance check (`pr-risk.js`, SHA match, release label, deploy check). Never edits code. |

@@ -27,8 +27,8 @@ Runs an independent code review on the PR diff and gates progression on required
    - If CI is still running: stop quietly and let queue drain ([01-trigger.md](01-trigger.md)) re-check.
 4. **Route outcome:**
    - **Review `ready_for_qa` AND CI green:** advance to [04-qa.md](04-qa.md) with `{ pr_url, branch, head_sha, profile, notable_risks, review_summary }`. Keep Linear `In Progress`.
-   - **Review `needs_more_work` OR CI red, with `pass < 3`:** increment `pass` (`pass + 1`) and return to [02-implement.md](02-implement.md) with the concrete fix list and/or failing CI log. Stay silent in Discord and owner chat.
-   - **Review `needs_more_work` OR CI red, with `pass == 3`:** route to the **loop-capped handoff** in [06-post-ship.md](06-post-ship.md). Start no 4th pass.
+   - **Review `needs_more_work` OR CI red, with `pass < 6`:** increment `pass` (`pass + 1`) and return to [02-implement.md](02-implement.md) with the concrete fix list and/or failing CI log. Stay silent in Discord and owner chat.
+   - **Review `needs_more_work` OR CI red, with `pass == 6`:** route to the **loop-capped handoff** in [06-post-ship.md](06-post-ship.md). Start no 7th pass.
 
 ## Completion Criterion
 

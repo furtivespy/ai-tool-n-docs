@@ -9,9 +9,9 @@ Canonical control plane for turning Linear tickets, PR conflicts, and scheduled 
 | 1. Trigger | Resolve intake source, repo, profile, runner, and harness into a work envelope | [01-trigger.md](stages/01-trigger.md) |
 | 2. Implement | Branch or fix on PR branch, verify locally, fill PR template, file pre-merge `Cleanup:` if needed | [02-implement.md](stages/02-implement.md) |
 | 3. Review + CI | Fresh 3-axis review (`skills/code-review`) + required CI test gate | [03-review.md](stages/03-review.md) |
-| 4. Review/CI loop | On `needs_more_work` or red CI tests, return to Step 2 (pass + 1, max 3 passes) | [03-review.md](stages/03-review.md) |
+| 4. Review/CI loop | On `needs_more_work` or red CI tests, return to Step 2 (pass + 1, max 6 passes) | [03-review.md](stages/03-review.md) |
 | 5. Manual QA | Run QA Department at profile depth (`skip`, `smoke`, `normal`, or `regression`) | [04-qa.md](stages/04-qa.md) |
-| 6. QA loop | On `QA: FAIL`, return to Step 2 with repro steps (same 3-pass cap) | [04-qa.md](stages/04-qa.md) |
+| 6. QA loop | On `QA: FAIL`, return to Step 2 with repro steps (same 6-pass cap) | [04-qa.md](stages/04-qa.md) |
 | 7. Merge gate | Run repo `ship-pr` gate (risk tier, QA freshness, release label, merge or park) | [05-merge-gate.md](stages/05-merge-gate.md) |
 | 8. Post-ship | File durable friction (post-merge), audit `Cleanup:`, update Linear, post terminal Discord embed | [06-post-ship.md](stages/06-post-ship.md) |
 
@@ -35,8 +35,8 @@ Consult each file only for the branch or decision it owns:
 ## Pass Cap & Loop Semantics
 
 - **1 pass** = one Implement/Fix run (Step 2) + one Review/CI evaluation (Step 3) + Manual QA (Step 5) if Review and CI pass.
-- **Hard cap = 3 passes.** Every fix cycle (review findings, red CI tests, QA failures, or merge-conflict resolution) increments `pass` toward 3.
-- At `pass == 3`, any remaining failure (`needs_more_work`, red CI test job, or `QA: FAIL`) triggers the **loop-capped handoff** in [06-post-ship.md](stages/06-post-ship.md). Start no 4th pass.
+- **Hard cap = 6 passes.** Every fix cycle (review findings, red CI tests, QA failures, or merge-conflict resolution) increments `pass` toward 6.
+- At `pass == 6`, any remaining failure (`needs_more_work`, red CI test job, or `QA: FAIL`) triggers the **loop-capped handoff** in [06-post-ship.md](stages/06-post-ship.md). Start no 7th pass.
 
 ## Empty-Diff Handoff
 
@@ -69,7 +69,7 @@ Post **only** at two lifecycle moments per work item. Suppress all intermediate 
    - **Shipped (merged):** `<id> shipped`, color `3066993` (green). Summarize user-visible change, short merge SHA, deploy check result, and any new `FUR` issues filed.
    - **Parked by merge gate:** `<id> parked for Will`, color `3447003` (blue). Summarize what the PR does and why it parked.
    - **Ready for review** (non-`ship-pr` QA pass or empty diff): `<id> ready for Will`, color `3447003` (blue). Note QA screenshots on the PR and attach one public screenshot URL as the embed image when provided.
-   - **Loop capped (pass 3 exhausted):** `<id> loop capped — needs more work`, color `3447003` (blue).
+   - **Loop capped (pass 6 exhausted):** `<id> loop capped — needs more work`, color `3447003` (blue).
    - **Scheduled cleanup complete (no ticket):** `<Sweep name> complete`, color `3447003` (blue), linking to the PR or run.
 
 **Embed wire rules:**
@@ -86,7 +86,7 @@ Stay silent in owner chat for routine transitions, capacity holds, and in-cap re
 - Unmapped project/repo in [registry.yaml](registry.yaml)
 - Auth or MCP failure
 - Ambiguous ticket that blocks implementation
-- Pass 3 loop-capped handoff
+- Pass 6 loop-capped handoff
 - QA Department unreachable or still blocked after one retry
 - Post-merge deploy check failure
 - Missing `docs/cleanup-automations.md` prompt on an enabled scheduled sweep
