@@ -51,7 +51,7 @@ stage_overrides:
       adversarial: alternate    # cross to cursor only when cursor is in enabled_harnesses and within quota
     # review-standard routes through cursor (grok-4.7) only when cursor is enabled and within quota; otherwise uses antigravity (gemini-4-neon, thought_level: medium)
   qa:
-    location: grok-box          # QA Department with local test bot + browser
+    location: grok-box          # QA Department with local test bot / web server + browser
   merge_gate:
     location: inherit
     harness: inherit
@@ -107,7 +107,7 @@ If `antigravity` returns a third-party quota error (e.g., on `claude-sonnet-5-5`
 - Enforce the active time-window concurrency limit across all scopes before every launch: count active running cloud agents first, drain in-flight review/fix/gate work before new `Todo` tickets, and hold silently when at or above capacity (let overnight runs finish naturally past 08:00 without killing them).
 
 ### 3. `grok-box` (Orchestrator & Live QA)
-- Owns Step 1 intake triggers and routines (CTO) and Step 5 live Discord verification (QA Department).
+- Owns Step 1 intake triggers and routines (CTO) and Step 5 live verification (QA Department: Discord test bot and local web app browser).
 
 ## Per-Stage & Per-Profile Model Routing
 
@@ -137,6 +137,6 @@ Logical tiers decouple stage instructions from vendor model updates. Verify avai
 | --- | --- | --- |
 | **Step 2 Implement & Steps 4/6 Fix passes** | **Same thread** on `t3-local` across Passes 1–6 *(fresh escape hatch on later fix passes, `pass >= 3`, if context is bloated or stuck)*; fresh run on same PR branch on `cursor-cloud` | Preserves design rationale, test context, and firsthand friction memory across loops. |
 | **Step 3 Code Review** | **Always fresh thread** (spawning fresh parallel axis sub-agents) | Prevents author confirmation bias; evaluates only `git diff <base>...HEAD`, spec, and baselines. |
-| **Step 5 Manual QA** | **Always separate agent** (QA Department on `grok-box`) | Independent live Discord verification and browser session. |
+| **Step 5 Manual QA** | **Always separate agent** (QA Department on `grok-box`) | Independent live verification (Discord test channel or local web app browser session). |
 | **Step 7 Merge Gate** | **Always fresh, lightweight thread** | Independent compliance check (`pr-risk.js`, SHA match, release label, deploy check). Never edits code. |
 | **Step 8 Cleanup & Friction** | **Resume Step 2 thread** post-merge on `t3-local`; process `friction_candidates` + `gate_friction_candidates` on `cursor-cloud` or closed threads | Implementer lived the repo papercuts; resuming post-merge avoids filing friction on parked/abandoned PRs. |
